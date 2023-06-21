@@ -64,7 +64,12 @@ function EditNote() {
       window.location.href = "/";
     }
   }
-
+  const textareaStyle = {
+    width: "100%",
+    resize: "vertical",
+    minHeight: "3em", /* minimum height */
+    maxHeight: "30em", /* maximum height */
+  };
 
 
   return (
@@ -84,6 +89,7 @@ function EditNote() {
           <textarea cols="30" rows="10" type="textarea" id='content' name="content"
             value={note.content} required
             onChange={onChaneInput}
+            style={textareaStyle}
           />
         </div>
 
