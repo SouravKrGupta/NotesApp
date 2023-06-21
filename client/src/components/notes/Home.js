@@ -50,7 +50,28 @@ export default function Home() {
       console.error("Error sharing note:", error);
     }
   };
+  useEffect(() => {
+    const handleCardColors = () => {
+      const cards = document.querySelectorAll(".card");
+      cards.forEach((card) => {
+        card.style.setProperty(
+          "--card-bg-color",
+          getRandomColor()
+        );
+      });
+    };
 
+    handleCardColors();
+  }, [notes]);
+
+  const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
 
   return (
     <div className="note-wrapper">

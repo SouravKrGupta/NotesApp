@@ -8,18 +8,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+
 body {
-  background: #ffffff;
+  background: #fff;
 }
+
 .notes-page {
   width: 100%;
   min-height: 100vh;
   color: #000;
+  background-color: rgb(206, 240, 144);
 }
+
 .notes-page header {
   max-width: 1920px;
   min-height: 100px;
@@ -30,25 +30,31 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+
 a {
   text-decoration: none;
   color: black;
 }
+
 .notes-page header ul li {
   display: inline-block;
   padding: 0 15px;
 }
+
 .notes-page header ul li a {
   padding: 10px;
   color: black;
 }
+
 .notes-page header ul li a:hover {
   color: #bf1a2f;
 }
+
 .notes-page section {
   width: 100%;
   padding: 20px 0;
 }
+
 .note-wrapper {
   max-width: 1920px;
   display: flex;
@@ -56,10 +62,12 @@ a {
   justify-content: space-around;
   margin: auto;
 }
+
 .logo {
   border: 0.5px solid black;
   padding: 5px 20px;
 }
+
 .card {
   width: 300px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -67,9 +75,10 @@ a {
   position: relative;
   color: black;
   margin: 15px;
-  padding: 20px;
   padding-bottom: 5px;
+  background-color: var(--card-bg-color);
 }
+
 .card .delete {
   position: absolute;
   border: none;
@@ -79,6 +88,7 @@ a {
   background: transparent;
   color: black;
 }
+
 .card .share {
   position: absolute;
   border: none;
@@ -88,11 +98,13 @@ a {
   background: transparent;
   color: black;
 }
+
 .card h4 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .card .text-wrapper {
   width: 100%;
   height: 150px;
@@ -103,6 +115,7 @@ a {
   margin: 10px 0;
   color: #465362;
 }
+
 .card .date {
   text-align: left;
   color: black;
@@ -110,6 +123,7 @@ a {
   border-bottom: 0.5px solid lightgrey;
   padding-bottom: 10px;
 }
+
 .card-footer {
   display: flex;
   justify-content: flex-end;
@@ -119,7 +133,6 @@ a {
   font-size: 15px;
 }
 
-/* create note */
 .create-note {
   max-width: 500px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -127,17 +140,18 @@ a {
   margin: auto;
   padding: 40px;
   padding-top: 20px;
-
 }
+
 .create-note h2 {
   margin: 10px 0;
   text-align: center;
 }
+
 .create-note .row {
   width: 100%;
   margin: 10px 0;
- 
 }
+
 .create-note input,
 .create-note button {
   width: 100%;
@@ -161,10 +175,12 @@ textarea {
 .create-note label {
   font-weight: bolder;
 }
+
 .create-note textarea {
   width: 100%;
   padding: 5px;
 }
+
 .create-note button {
   margin-top: 20px;
   width: 25%;
@@ -175,7 +191,6 @@ textarea {
   padding: 10px;
 }
 
-/* login and register */
 .login-page {
   margin: auto;
   position: relative;
@@ -187,10 +202,12 @@ textarea {
   border: none;
   border-bottom: 0.5px solid lightgrey;
 }
+
 .login input,
 .register input {
   margin-bottom: 15px;
 }
+
 .login,
 .register {
   position: absolute;
@@ -198,19 +215,86 @@ textarea {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .login-page h3 {
   text-align: center;
   margin-top: 15px;
   color: #bf1a2f;
 }
+
 .register h3 {
   color: #45cb85;
 }
+
 .login-page p {
   margin: 10px 0;
   color: black;
 }
+
 .login-page span:hover {
   cursor: pointer;
   color: #bf1a2f;
+}
+
+header {
+  background-color: #d69252;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: auto;
+}
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo svg {
+  margin-right: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+li {
+  margin-left: 10px;
+}
+
+li:first-child {
+  margin-left: 0;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #d69252;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
 }
