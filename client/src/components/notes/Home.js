@@ -4,7 +4,7 @@ import { format } from "timeago.js";
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import ShareIcon from '@mui/icons-material/Share';
+import ShareIcon from "@mui/icons-material/Share";
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
@@ -37,6 +37,20 @@ export default function Home() {
       window.location.href = "/";
     }
   };
+  //Share part
+  const shareNote = async (id, title, content, date) => {
+    try {
+      if (token) {
+       
+        // Share on Twitter
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title + " - " + content + " " + format(date) )}`;
+        window.open(twitterUrl, "_blank");
+      }
+    } catch (error) {
+      console.error("Error sharing note:", error);
+    }
+  };
+
 
   return (
     <div className="note-wrapper">
@@ -55,8 +69,10 @@ export default function Home() {
           <button className="delete" onClick={() => deleteNote(note._id)}>
             <DeleteIcon />
           </button>
-          <button className="share">
+             <button className="share" onClick={() => shareNote(note._id, note.title, note.content, note.date)}>
+            
             <ShareIcon/>
+            
           </button>
         </div>
       ))}

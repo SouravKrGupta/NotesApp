@@ -38,6 +38,14 @@ export default function CreateNote() {
     }
   };
 
+
+  const textareaStyle = {
+    width: "100%",
+    resize: "vertical",
+    minHeight: "3em", /* minimum height */
+    maxHeight: "30em", /* maximum height */
+  };
+
   return (
     <div className="create-note">
       <h2>Add Note</h2>
@@ -64,6 +72,7 @@ export default function CreateNote() {
             required
             rows="2"
             onChange={onChangeInput}
+            style={textareaStyle}
           />
         </div>
 
