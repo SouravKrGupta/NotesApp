@@ -2,12 +2,14 @@ const Users = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userController = {
+
   registerUser: async (req, res) => {
     try {
       const { username, email, password } = req.body;
-      const user = await Users.findOne({ email: email });
-      if (user)
+      const existingEmail = await Users.findOne({ email: email });
+      if (existingEmail)
         return res.status(400).json({ msg: "The email already exists." });
+
       const passwordHash = await bcrypt.hash(password, 10);
       const newUser = new Users({
         username: username,
@@ -20,6 +22,7 @@ const userController = {
       return res.status(500).json({ msg: err.message });
     }
   },
+
   loginUser: async (req, res) => {
     try {
       const { email, password } = req.body;
