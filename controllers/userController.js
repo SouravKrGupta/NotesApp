@@ -9,7 +9,11 @@ const userController = {
       const existingEmail = await Users.findOne({ email: email });
       if (existingEmail)
         return res.status(400).json({ msg: "The email already exists." });
+        const existingUser = await Users.findOne({ username: username });
+        if (existingUser) {
 
+          return res.status(400).json({ msg: "Username already exists. Please choose a different name." });
+        }
       const passwordHash = await bcrypt.hash(password, 10);
       const newUser = new Users({
         username: username,

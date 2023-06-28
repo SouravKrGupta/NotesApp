@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import GmailIcon from "@mui/icons-material/Mail";
 import TwitterIcon from "@mui/icons-material/Twitter";
-
+import '../../Style/home.css'
 export default function Home() {
   const [notes, setNotes] = useState([]);
   const [token, setToken] = useState("");
@@ -106,9 +106,9 @@ export default function Home() {
           <div className="text-wrapper">
             <p>{note.content}</p>
           </div>
-          <p className="date">deadline {format(note.date)}</p>
+          <p className="date">Date : {format(note.date)}</p>
           <div className="card-footer">
-            <Link to={`edit/${note._id}`}>
+            <Link to={`edit/${note._id}`} className="edit">
               <EditIcon />
             </Link>
           </div>

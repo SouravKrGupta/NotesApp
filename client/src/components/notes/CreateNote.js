@@ -42,7 +42,7 @@ export default function CreateNote() {
   const textareaStyle = {
     width: "100%",
     resize: "vertical",
-    minHeight: "3em", /* minimum height */
+    minHeight: "5em", /* minimum height */
     maxHeight: "30em", /* maximum height */
   };
 
@@ -76,7 +76,7 @@ export default function CreateNote() {
           />
         </div>
 
-        <label htmlFor="date">Deadline {note.date} </label>
+        <label htmlFor="date"> Date {note.date} </label>
         <div className="row">
           <input type="date" id="date" name="date" onChange={onChangeInput} />
         </div>
