@@ -15,7 +15,8 @@ export default function Nav({ setIsLogin }) {
     <header>
       <div className="logo">
         <h1>
-          <Link to="/">Take It! <AssignmentTurnedInIcon /></Link>
+   
+          <Link to="/" style={{color:'black'}}> Take It! <AssignmentTurnedInIcon /></Link>
         </h1>
       </div>
       <ul>

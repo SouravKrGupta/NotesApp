@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../Style/login.css'
 
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 export default function Login({ setIsLogin }) {
   const [user, setUser] = useState({ name: "", email: "", password: "" });
   const [err, setErr] = useState("");
@@ -26,6 +28,8 @@ export default function Login({ setIsLogin }) {
     }
   };
 
+  
+
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -49,11 +53,29 @@ export default function Login({ setIsLogin }) {
   const styleForLoginComponent = {
     visibility: onLogin ? "hidden" : "visible",
   };
+const background = {
+ 
+  backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2016/01/09/18/28/notepad-1130743_1280.jpg" + ")",
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
 
+
+}
   return (
-    <section className="login-page" style={styleForLoginComponent}>
-        
-      <div className="login create-note">
+  <div style={background} >
+<header className="header">
+      <div className="logo">
+        <h1>
+         Take It! <AssignmentTurnedInIcon />
+        </h1>
+      </div>
+     
+    </header>
+
+    <section className="login-page" style={styleForLoginComponent} >
+    
+      <div className="login box">
         <h2>Login</h2>
         <form onSubmit={loginSubmit}>
           <input
@@ -79,12 +101,14 @@ export default function Login({ setIsLogin }) {
 
           <button type="submit" >Login</button>
           <p>
-            <span onClick={() => setOnLogin(true)}> Register Now </span>
+            <span onClick={() => setOnLogin(true)} > Register Now </span>
           </p>
           <h3>{err}</h3>
         </form>
       </div>
-      <div className="register create-note" style={styleForRegisterComponent}>
+    
+      <div className="register box" style={styleForRegisterComponent}>
+     
         <h2>Register</h2>
         <form onSubmit={registerSubmit}>
           <input
@@ -126,5 +150,6 @@ export default function Login({ setIsLogin }) {
         </form>
       </div>
     </section>
+    </div>
   );
 }
