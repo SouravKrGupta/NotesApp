@@ -190,7 +190,10 @@ a {
   .notes-page header ul li {
     padding: 0 10px;
   }
-
+  .notes-page section {
+    width: 90%;
+  margin: 20px;
+  }
   .create-note {
     padding: 30px;
     padding-top: 15px;
