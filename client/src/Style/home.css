@@ -113,7 +113,34 @@
     background-color: yellow;
   border-radius: 50px;
    }
-
+   
+   .card {
+    /* existing styles */
+    color: white; /* Set the default text color to white */
+  }
+  
+  .card.light {
+    color: black; /* Set the text color to black for light background cards */
+  }
+  
+  .card h4,
+  .card .text-wrapper,
+  .card .date {
+    transition: color 0.3s ease; /* Add a transition effect for smooth color change */
+  }
+  
+  .card.dark h4,
+  .card.dark .text-wrapper,
+  .card.dark .date {
+    color: white; /* Set the text color to white for dark background cards */
+  }
+  
+  .card.light:hover h4,
+  .card.light:hover .text-wrapper,
+  .card.light:hover .date {
+    color: black; /* Set the text color to black when hovering over light background cards */
+  }
+  
    /* Media queries for responsiveness */
 
 @media (max-width: 768px) {

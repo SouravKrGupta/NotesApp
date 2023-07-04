@@ -11,6 +11,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import GmailIcon from "@mui/icons-material/Mail";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import '../../Style/home.css'
+
 export default function Home() {
   const [notes, setNotes] = useState([]);
   const [token, setToken] = useState("");
@@ -82,7 +83,11 @@ export default function Home() {
     const handleCardColors = () => {
       const cards = document.querySelectorAll(".card");
       cards.forEach((card) => {
-        card.style.setProperty("--card-bg-color", getRandomColor());
+        const bgColor = getRandomColor();
+        card.style.setProperty("--card-bg-color", bgColor);
+        const isDark = isColorDark(bgColor);
+        card.classList.toggle("dark", isDark);
+        card.classList.toggle("light", !isDark);
       });
     };
 
@@ -98,10 +103,36 @@ export default function Home() {
     return color;
   };
 
+  const isColorDark = (color) => {
+    // Convert the hex color to RGB
+    const rgbColor = hexToRgb(color);
+
+    // Calculate the relative luminance of the color
+    const luminance = (0.299 * rgbColor.r + 0.587 * rgbColor.g + 0.114 * rgbColor.b) / 255;
+
+    // Return true if the luminance is below a threshold, indicating a dark color
+    return luminance < 0.5;
+  };
+
+  const hexToRgb = (hex) => {
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => {
+      return r + r + g + g + b + b;
+    });
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
+  };
+
   return (
     <div className="note-wrapper">
       {notes.map((note) => (
-        <div className="card" key={note._id}>
+        <div className={`card ${note.isDark ? 'dark' : 'light'}`} key={note._id}>
           <h4 title={note.title}>{note.title}</h4>
           <div className="text-wrapper">
             <p>{note.content}</p>
