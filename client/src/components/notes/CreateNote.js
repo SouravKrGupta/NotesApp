@@ -3,10 +3,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateNote() {
+  const today = new Date().toISOString().substr(0, 10); // Get the current date in YYYY-MM-DD format
   const [note, setNote] = useState({
     title: "",
     content: "",
-    date: "",
+    date: today, // Set the initial value to today's date
   });
   const history = useNavigate();
 
@@ -37,7 +38,6 @@ export default function CreateNote() {
       window.location.href = "/";
     }
   };
-
 
   const textareaStyle = {
     width: "100%",
@@ -76,9 +76,17 @@ export default function CreateNote() {
           />
         </div>
 
-        <label htmlFor="date"> Date {note.date} </label>
+        <label htmlFor="date">Date {note.date}</label>
         <div className="row">
-          <input type="date" id="date" name="date" onChange={onChangeInput} />
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={note.date}
+            onChange={onChangeInput}
+            min={today} // Set the min attribute to the current date
+            max={today} // Set the max attribute to the current date
+          />
         </div>
 
         <button type="submit">Post</button>
