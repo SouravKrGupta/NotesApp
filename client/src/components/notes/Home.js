@@ -137,7 +137,7 @@ export default function Home() {
           <div className="text-wrapper">
             <p>{note.content}</p>
           </div>
-          <p className="date">Date : {format(note.date)}</p>
+          <p className="date">Date : {new Date(note.date).toLocaleDateString()}</p>
           <div className="card-footer">
             <Link to={`edit/${note._id}`} className="edit">
               <EditIcon />
