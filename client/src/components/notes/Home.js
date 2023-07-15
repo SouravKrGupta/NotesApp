@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import GmailIcon from "@mui/icons-material/Mail";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import KeyboardTabIcon from "@mui/icons-material/KeyboardTab";
 import '../../Style/home.css'
 
 export default function Home() {
@@ -17,6 +18,9 @@ export default function Home() {
   const [token, setToken] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentNote, setCurrentNote] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [cardColors, setCardColors] = useState({});
 
   const getNotes = async (token) => {
     const res = await axios.get("api/notes", {
@@ -32,6 +36,21 @@ export default function Home() {
       getNotes(token);
     }
   }, []);
+
+  useEffect(() => {
+    const handleCardColors = () => {
+      const colors = {};
+      notes.forEach((note) => {
+        if (!note.isDark && !note.isLight) {
+          const bgColor = getRandomColor();
+          colors[note._id] = bgColor;
+        }
+      });
+      setCardColors(colors);
+    };
+
+    handleCardColors();
+  }, [notes]);
 
   const deleteNote = async (id) => {
     try {
@@ -79,21 +98,6 @@ export default function Home() {
     window.open(twitterUrl, "_blank");
   };
 
-  useEffect(() => {
-    const handleCardColors = () => {
-      const cards = document.querySelectorAll(".card");
-      cards.forEach((card) => {
-        const bgColor = getRandomColor();
-        card.style.setProperty("--card-bg-color", bgColor);
-        const isDark = isColorDark(bgColor);
-        card.classList.toggle("dark", isDark);
-        card.classList.toggle("light", !isDark);
-      });
-    };
-
-    handleCardColors();
-  }, [notes]);
-
   const getRandomColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -103,49 +107,70 @@ export default function Home() {
     return color;
   };
 
-  const isColorDark = (color) => {
-    // Convert the hex color to RGB
-    const rgbColor = hexToRgb(color);
-
-    // Calculate the relative luminance of the color
-    const luminance = (0.299 * rgbColor.r + 0.587 * rgbColor.g + 0.114 * rgbColor.b) / 255;
-
-    // Return true if the luminance is below a threshold, indicating a dark color
-    return luminance < 0.5;
+  const handleSearch = () => {
+    setShowSearchResults(true);
   };
 
-  const hexToRgb = (hex) => {
-    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, (m, r, g, b) => {
-      return r + r + g + g + b + b;
-    });
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
-        }
-      : null;
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setShowSearchResults(false);
   };
+
+  const filteredNotes = notes.filter((note) =>
+    note.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const sortedNotes = [...filteredNotes].sort(
+    (a, b) =>
+      a.title.toLowerCase().indexOf(searchTerm.toLowerCase()) -
+      b.title.toLowerCase().indexOf(searchTerm.toLowerCase())
+  );
+
+  const displayNotes = showSearchResults ? sortedNotes : notes;
 
   return (
     <div className="note-wrapper">
-      {notes.map((note) => (
-        <div className={`card ${note.isDark ? 'dark' : 'light'}`} key={note._id}>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button className="search-button" onClick={handleSearch}>
+          Search
+        </button>
+        {showSearchResults && (
+          <button className="clear-search-button" onClick={handleClearSearch}>
+            Clear Search
+          </button>
+        )}
+      </div>
+      {displayNotes.map((note) => (
+        <div
+          className={`card ${note.isDark ? "dark" : "light"}`}
+          style={{ "--card-bg-color": cardColors[note._id] }}
+          key={note._id}
+        >
           <h4 title={note.title}>{note.title}</h4>
           <div className="text-wrapper">
             <p>{note.content}</p>
           </div>
-          <p className="date">Date : {new Date(note.date).toLocaleDateString()}</p>
+          <p className="date">
+            Date : {new Date(note.date).toLocaleDateString()}
+          </p>
           <div className="card-footer">
             <Link to={`edit/${note._id}`} className="edit">
               <EditIcon />
+            </Link>
+            <Link to={`card/${note._id}`} className="completednote">
+              <KeyboardTabIcon />
             </Link>
           </div>
           <button className="delete" onClick={() => deleteNote(note._id)}>
             <DeleteIcon />
           </button>
+
           <IconButton
             className="share"
             onClick={(event) => shareNote(event, note)}
