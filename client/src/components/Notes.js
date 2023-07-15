@@ -4,7 +4,7 @@ import Home from './notes/Home'
 import CreateNotes from './notes/CreateNote'
 import EditNotes  from './notes/EditNote'
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom'
-
+import  CardNote  from './notes/CardNote'
 
 
 
@@ -18,6 +18,7 @@ function Notes({setIsLogin}) {
           <Route path='/' element={<Home/>} exact/>
           <Route path='/create' element={<CreateNotes/>} exact/>
           <Route path='/edit/:id' element={<EditNotes/>} exact/>
+          <Route path='/card/:id' element={<CardNote/>} exact/>
           </Routes>
         </section>
 
