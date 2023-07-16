@@ -11,7 +11,9 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import GmailIcon from "@mui/icons-material/Mail";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import KeyboardTabIcon from "@mui/icons-material/KeyboardTab";
-import '../../Style/home.css'
+import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
+import "../../Style/home.css";
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
@@ -20,7 +22,6 @@ export default function Home() {
   const [currentNote, setCurrentNote] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearchResults, setShowSearchResults] = useState(false);
-  const [cardColors, setCardColors] = useState({});
 
   const getNotes = async (token) => {
     const res = await axios.get("api/notes", {
@@ -36,21 +37,6 @@ export default function Home() {
       getNotes(token);
     }
   }, []);
-
-  useEffect(() => {
-    const handleCardColors = () => {
-      const colors = {};
-      notes.forEach((note) => {
-        if (!note.isDark && !note.isLight) {
-          const bgColor = getRandomColor();
-          colors[note._id] = bgColor;
-        }
-      });
-      setCardColors(colors);
-    };
-
-    handleCardColors();
-  }, [notes]);
 
   const deleteNote = async (id) => {
     try {
@@ -98,15 +84,6 @@ export default function Home() {
     window.open(twitterUrl, "_blank");
   };
 
-  const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
   const handleSearch = () => {
     setShowSearchResults(true);
   };
@@ -128,6 +105,15 @@ export default function Home() {
 
   const displayNotes = showSearchResults ? sortedNotes : notes;
 
+  const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
   return (
     <div className="note-wrapper">
       <div className="search-bar">
@@ -138,98 +124,100 @@ export default function Home() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button className="search-button" onClick={handleSearch}>
-          Search
+        <SearchIcon/>
         </button>
         {showSearchResults && (
           <button className="clear-search-button" onClick={handleClearSearch}>
-            Clear Search
+           <ClearIcon/>
           </button>
         )}
       </div>
-      {displayNotes.map((note) => (
-        <div
-          className={`card ${note.isDark ? "dark" : "light"}`}
-          style={{ "--card-bg-color": cardColors[note._id] }}
-          key={note._id}
-        >
-          <h4 title={note.title}>{note.title}</h4>
-          <div className="text-wrapper">
-            <p>{note.content}</p>
-          </div>
-          <p className="date">
-            Date : {new Date(note.date).toLocaleDateString()}
-          </p>
-          <div className="card-footer">
-            <Link to={`edit/${note._id}`} className="edit">
-              <EditIcon />
-            </Link>
-            <Link to={`card/${note._id}`} className="completednote">
-              <KeyboardTabIcon />
-            </Link>
-          </div>
-          <button className="delete" onClick={() => deleteNote(note._id)}>
-            <DeleteIcon />
-          </button>
+      <div className="note-grid">
+        {displayNotes.map((note) => (
+          <div
+            className="card"
+            style={{ backgroundColor: getRandomColor() }}
+            key={note._id}
+          >
+            <h4 title={note.title}>{note.title}</h4>
+            <div className="text-wrapper">
+              <p>{note.content}</p>
+            </div>
+            <p className="date">
+              Date : {new Date(note.date).toLocaleDateString()}
+            </p>
+            <div className="card-footer">
+              <Link to={`edit/${note._id}`} className="edit">
+                <EditIcon />
+              </Link>
+              <Link to={`card/${note._id}`} className="completednote">
+                <KeyboardTabIcon />
+              </Link>
+            </div>
+            <button className="delete" onClick={() => deleteNote(note._id)}>
+              <DeleteIcon />
+            </button>
 
-          <IconButton
-            className="share"
-            onClick={(event) => shareNote(event, note)}
-          >
-            <ShareIcon />
-          </IconButton>
-          <Popover
-            open={Boolean(anchorEl)}
-            anchorEl={anchorEl}
-            onClose={closeSharePopover}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-          >
-            {currentNote && (
-              <>
-                <IconButton
-                  onClick={() =>
-                    shareViaWhatsApp(
-                      currentNote.title,
-                      currentNote.content,
-                      currentNote.date
-                    )
-                  }
-                >
-                  <WhatsAppIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    shareViaGmail(
-                      currentNote.title,
-                      currentNote.content,
-                      currentNote.date
-                    )
-                  }
-                >
-                  <GmailIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    shareViaTwitter(
-                      currentNote.title,
-                      currentNote.content,
-                      currentNote.date
-                    )
-                  }
-                >
-                  <TwitterIcon />
-                </IconButton>
-              </>
-            )}
-          </Popover>
-        </div>
-      ))}
+            <IconButton
+              className="share"
+              onClick={(event) => shareNote(event, note)}
+            >
+              <ShareIcon />
+            </IconButton>
+            <Popover
+              open={Boolean(anchorEl)}
+              anchorEl={anchorEl}
+              onClose={closeSharePopover}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              {currentNote && (
+                <>
+                  <IconButton
+                    onClick={() =>
+                      shareViaWhatsApp(
+                        currentNote.title,
+                        currentNote.content,
+                        currentNote.date
+                      )
+                    }
+                  >
+                    <WhatsAppIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() =>
+                      shareViaGmail(
+                        currentNote.title,
+                        currentNote.content,
+                        currentNote.date
+                      )
+                    }
+                  >
+                    <GmailIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() =>
+                      shareViaTwitter(
+                        currentNote.title,
+                        currentNote.content,
+                        currentNote.date
+                      )
+                    }
+                  >
+                    <TwitterIcon />
+                  </IconButton>
+                </>
+              )}
+            </Popover>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,151 +1,186 @@
 .note-wrapper {
-    max-width: 1920px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: auto;
-  }
-  .card {
-    width: 300px;
-    box-shadow: rgba(217, 190, 11, 0.2) 0px 7px 29px 0px;
-    padding: 20px;
-    position: relative;
-    color: black;
-    margin: 15px;
-    padding-bottom: 5px;
-    background-color: var(--card-bg-color);
-  }
-  
-  .card .delete {
-    position: absolute;
-    border: none;
-    top: 15px;
-    right: 8px;
-    cursor: pointer;
-    background: transparent;
-    color: black;
-    display: inline-block;
+  max-width: 1920px;
+  margin: auto;
+}
 
-    height: 3em;
-    
-    width: 3em;
-    
-    padding: 0.25em;
-    
-    border-radius: 50%;
-  }
-  .card .delete:hover{
-    color:  #ff4584;
-    background-color: yellow;
-  border-radius: 50px;
-  }
-  .card .share {
-    position: absolute;
-    border: none;
-   top: 15px;
-    right: 50px;
-    cursor: pointer;
-    background: transparent;
-    color: black;
-    display: inline-block;
-    height: 1.6em;
-    
-    width: 1.6em;
-    
-    padding: 0.25em;
-    
-    border-radius: 50%;
-  }
-  .card .share:hover{
-    color:  #ff4584;
-    background-color: yellow;
-  border-radius: 50px;
-  }
-  
-  .card h4 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  .card .text-wrapper {
-    width: 100%;
-    height: 150px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 7;
-    overflow: hidden;
-    margin: 10px 0;
-    color: #465362;
-  }
-  
-  .card .date {
-    text-align: left;
-    color: black;
-    opacity: 0.7;
-    border-bottom: 0.5px solid lightgrey;
-    padding-bottom: 10px;
-  }
-  
-  .card-footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    font-size: 15px;
-   
-    margin-top: 5px;
-   
-  }  
-   .card-footer .edit{
-    display: inline-block;
-    height: 2.5em;
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-    width: 2.5em;
-    text-align: center;
-    padding: 0.25em;
-    
-    border-radius: 50%;
-   }
-   .card-footer .edit:hover{
-    color:  #ff4584;
-    background-color: yellow;
+.search-bar input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  width: 500px;
+  max-width: 100%;
+  font-size: 16px;
+  outline: none;
+}
+.search-bar input[type="text"]:focus {
+  border-color: #4285f4;
+  box-shadow: 0 0 5px rgba(66, 133, 244, 0.5);
+}
+
+.search-bar button ,
+.clear-search-button{
+  background-color: #ff4584;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.search-bar button:hover {
+  background-color: blue;
+}
+
+
+
+
+.note-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  width: 300px;
+  box-shadow: rgba(217, 190, 11, 0.2) 0px 7px 29px 0px;
+  padding: 20px;
+  position: relative;
+  color: rgb(6, 6, 6);
+  padding-bottom: 5px;
+  background-color: var(--card-bg-color);
+}
+
+.card .delete {
+  position: absolute;
+  border: none;
+  top: 15px;
+  right: 8px;
+  cursor: pointer;
+  background: transparent;
+  color: black;
+  display: inline-block;
+  height: 3em;
+  width: 3em;
+  padding: 0.25em;
+  border-radius: 50%;
+}
+
+.card .delete:hover {
+  color: #ff4584;
+  background-color: yellow;
   border-radius: 50px;
-   }
-   
-   .card {
-    /* existing styles */
-    color: white; /* Set the default text color to white */
-  }
-  
-  .card.light {
-    color: black; /* Set the text color to black for light background cards */
-  }
-  
-  .card h4,
-  .card .text-wrapper,
-  .card .date {
-    transition: color 0.3s ease; /* Add a transition effect for smooth color change */
-  }
-  
-  .card.dark h4,
-  .card.dark .text-wrapper,
-  .card.dark .date {
-    color: white; /* Set the text color to white for dark background cards */
-  }
-  
-  .card.light:hover h4,
-  .card.light:hover .text-wrapper,
-  .card.light:hover .date {
-    color: black; /* Set the text color to black when hovering over light background cards */
-  }
-  
-   /* Media queries for responsiveness */
+}
+
+.card .share {
+  position: absolute;
+  border: none;
+  top: 15px;
+  right: 50px;
+  cursor: pointer;
+  background: transparent;
+  color: black;
+  display: inline-block;
+  height: 1.6em;
+  width: 1.6em;
+  padding: 0.25em;
+  border-radius: 50%;
+}
+
+.card .share:hover {
+  color: #ff4584;
+  background-color: yellow;
+  border-radius: 50px;
+}
+
+.card h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card .text-wrapper {
+  width: 100%;
+  height: 150px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+  margin: 10px 0;
+  color: #0c0c0c;
+}
+
+.card .date {
+  text-align: left;
+  color: rgb(0, 0, 0);
+  opacity: 0.7;
+  border-bottom: 0.5px solid lightgrey;
+  padding-bottom: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.card-footer .edit {
+  display: inline-block;
+  height: 2.5em;
+  width: 2.5em;
+  text-align: center;
+  padding: 0.25em;
+  border-radius: 50%;
+}
+.card-footer .completednote{
+  display: inline-block;
+  height: 2.5em;
+  width: 2.5em;
+  text-align: center;
+  padding: 0.25em;
+  border-radius: 50%;
+}
+.card-footer .completednote:hover{
+  color: #ff4584;
+  background-color: yellow;
+  border-radius: 50px;
+}
+.card-footer .edit:hover {
+  color: #ff4584;
+  background-color: yellow;
+  border-radius: 50px;
+}
+
+
+/* Media queries for responsiveness */
 
 @media (max-width: 768px) {
   /* Styles for screens up to 768px */
-  .note-wrapper {
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-bar input[type="text"] {
+    margin-right: 0; /* Updated */
+    margin-bottom: 10px; /* Added */
+  }
+  .search-bar button {
+    margin-left: 0; /* Added */
+  }
+  .note-grid {
     justify-content: center;
   }
 
@@ -183,10 +218,27 @@
     width: 2em;
     font-size: 10px;
   }
+  .card-footer .completednote{
+    margin-left: 15px;
+    height: 2em;
+    width: 2em;
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 480px) {
   /* Styles for screens up to 480px */
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-bar input[type="text"] {
+    margin-right: 0; /* Updated */
+    margin-bottom: 10px; /* Added */
+  }
+  .search-bar button {
+    margin-left: 0; /* Added */
+  }
   .card {
     max-width: 300px;
     margin: 10px;

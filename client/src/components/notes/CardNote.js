@@ -35,11 +35,17 @@ const CardNote = () => {
   const navigateToHome = () => {
     history('/');
   };
+
+  const textareaStyle = {
+    width: '100%',
+    height: '200px', // Adjust this value as needed
+    resize: 'vertical',
+  };
   return (
     <div className='view-note'>
       <h2>View note</h2>
       <div className='row'>
-        <label htmlFor='title'>Title</label>
+       
         <input
           type='text'
           id='title'
@@ -49,14 +55,15 @@ const CardNote = () => {
         />
       </div>
       <div className='row'>
-        <label htmlFor='content'>Content</label>
+       
         <textarea
-          cols='30'
-          rows='10'
+          cols='auto'
+          rows='auto'
           type='textarea'
           id='content'
           name='content'
           value={note.content}
+          style={textareaStyle}
           disabled
         />
       </div>
