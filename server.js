@@ -4,7 +4,7 @@ const dotenv =require('dotenv')
 const morgan =require('morgan')
 const colors = require('colors')
 const connectDB =require("./config/db")
-const path=require('path')
+
 //env config
 dotenv.config()
 
@@ -27,11 +27,7 @@ app.use('/api/notes',NoteRouter)
 // app.get('/',(req,res) =>{
 //     res.json("Hello Everyone,This Notes Application")
 // })
-//static files
-app.use(express.static(path.join(__dirname,'./client/build')))
-app.get('*',function(req,res){
-  res.sendFile(path.join(__dirname,'./client/build/index.html'))
-})
+
 //Port
 const PORT =process.env.PORT || 8080;
 //listen
