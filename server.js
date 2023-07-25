@@ -1,39 +1,43 @@
-const express = require("express")
-const cors =require('cors')
-const dotenv =require('dotenv')
-const morgan =require('morgan')
-const colors = require('colors')
-const connectDB =require("./config/db")
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const morgan = require("morgan");
+const colors = require("colors");
+const connectDB = require("./config/db");
 
 //env config
-dotenv.config()
+dotenv.config();
 
 //router import
-const UserRouter =require("./routes/userRouter")
-const NoteRouter =require("./routes/noteRouter")
+const UserRouter = require("./routes/userRouter");
+const NoteRouter = require("./routes/noteRouter");
+const RecycleBinRouter = require("./routes/recycleBinRouter");
+
 //mongodb connection
 connectDB();
 //rest object
-const app =express()
+const app = express();
 
 //middelwares
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 //routes
-app.use('/users',UserRouter)
-app.use('/api/notes',NoteRouter)
+app.use("/users", UserRouter);
+app.use("/api/notes", NoteRouter);
 
+// Route to access the recycle bin API
+app.use("/api/notes/recycle-bin", RecycleBinRouter);
 // app.get('/',(req,res) =>{
 //     res.json("Hello Everyone,This Notes Application")
 // })
 
 //Port
-const PORT =process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 //listen
 app.listen(PORT, () => {
-    console.log(
-      `Server Running on ${process.env.DEV_MODE} mode port no ${PORT}`.bgCyan
-        .white
-    );
-  });
+  console.log(
+    `Server Running on ${process.env.DEV_MODE} mode port no ${PORT}`.bgCyan
+      .white
+  );
+});
