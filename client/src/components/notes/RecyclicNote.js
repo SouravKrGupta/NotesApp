@@ -7,10 +7,12 @@ const RecyclicNote = () => {
     const getDeletedNotes = async () => {
       try {
         const token = localStorage.getItem("tokenStore");
-        const res = await axios.get("/api/notes/recycle-bin", {
+        console.log("hello")
+        const res = await axios.get("/api/notes", {
           headers: { Authorization: token },
         });
         setDeletedNotes(res.data);
+       
       } catch (error) {
         console.error("Error fetching deleted notes:", error);
       }
