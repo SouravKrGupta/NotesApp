@@ -62,14 +62,25 @@ const noteController = {
     }
   },
 
-  getRecycleBin: async (req, res) => {
-    try {
-      const deletedNotes = await Note.find({ user_id: req.user.id, isDeleted: true });
-      res.json(deletedNotes);
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
-    }
-  },
+//   getRecycleBin: async (req, res) => {
+//     try {
+//       const deletedNotes = await Note.findById({ user_id: req.user.id, isDeleted: true });
+//       res.json(deletedNotes);
+//     } catch (err) {
+//       console.log("hello");
+//       return res.status(500).json({ msg: err.message });
+//     }
+//   },
+      getRecycleBin:async(req,res) =>{
+        try {
+        
+          const deletedNotes= await Note.findById({_id:req.params.id,isDeleted:true})
+          res.json(deletedNotes);
+          console.log(deletedNotes);
+        } catch (error) {
+          return res.status(500).json({msg:err.message});
+        }
+      }
 };
 
 module.exports = noteController;
