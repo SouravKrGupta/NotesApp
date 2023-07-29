@@ -30,7 +30,7 @@ const noteController = {
 
   deleteNote: async (req, res) => {
     try {
-      await Note.findByIdAndUpdate(req.params.id, { isDeleted: true }, { new: true });
+      await Note.findByIdAndUpdate(req.params.id);
       res.json({ msg: 'Deleted a Note' });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
@@ -41,7 +41,7 @@ const noteController = {
     try {
       const { title, content, date } = req.body;
       await Note.findOneAndUpdate(
-        { _id: req.params.id, isDeleted: false },
+        { _id: req.params.id},
         { title, content, date },
       );
       res.json({ msg: 'Updated a Note' });
@@ -53,34 +53,14 @@ const noteController = {
   getNote: async (req, res) => {
     try {
       const note = await Note.findById(req.params.id);
-      if (!note || note.isDeleted) {
-        return res.status(404).json({ msg: 'Note not found' });
-      }
+     
       res.json(note);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
   },
 
-//   getRecycleBin: async (req, res) => {
-//     try {
-//       const deletedNotes = await Note.findById({ user_id: req.user.id, isDeleted: true });
-//       res.json(deletedNotes);
-//     } catch (err) {
-//       console.log("hello");
-//       return res.status(500).json({ msg: err.message });
-//     }
-//   },
-      getRecycleBin:async(req,res) =>{
-        try {
-        
-          const deletedNotes= await Note.findById({_id:req.params.id,isDeleted:true})
-          res.json(deletedNotes);
-          console.log(deletedNotes);
-        } catch (error) {
-          return res.status(500).json({msg:err.message});
-        }
-      }
+
 };
 
 module.exports = noteController;

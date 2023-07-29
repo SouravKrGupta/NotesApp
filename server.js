@@ -11,7 +11,7 @@ dotenv.config();
 //router import
 const UserRouter = require("./routes/userRouter");
 const NoteRouter = require("./routes/noteRouter");
-const RecycleBinRouter = require("./routes/recycleBinRouter");
+
 
 //mongodb connection
 connectDB();
@@ -26,8 +26,7 @@ app.use(morgan("dev"));
 app.use("/users", UserRouter);
 app.use("/api/notes", NoteRouter);
 
-// Route to access the recycle bin API
-app.use("/api/notes/recycle-bin", RecycleBinRouter);
+
 // app.get('/',(req,res) =>{
 //     res.json("Hello Everyone,This Notes Application")
 // })
