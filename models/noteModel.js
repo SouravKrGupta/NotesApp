@@ -23,8 +23,7 @@ user_id:{
 name:{
     type:String,
     required:true
-}, 
-
+}
 },
 {
     timestamps:true
