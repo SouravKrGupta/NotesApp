@@ -19,7 +19,6 @@ function Notes({setIsLogin}) {
           <Route path='/create' element={<CreateNotes/>} exact/>
           <Route path='/edit/:id' element={<EditNotes/>} exact/>
           <Route path='/card/:id' element={<CardNote/>} exact/>
-    
           </Routes>
         </section>
 

@@ -6,7 +6,7 @@ const router =express.Router();
 
 router.route('/')
 .get(auth,noteController.getNotes)
-.post(auth,noteController.createNote)
+.post(auth,noteController.createNotes)
 
 router.route('/:id')
 .get(auth,noteController.getNote)
