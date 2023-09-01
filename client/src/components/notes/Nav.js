@@ -31,7 +31,7 @@ export default function Nav({ setIsLogin }) {
           </Link>
         </li>
         <li >
-          <Link to="">
+          <Link to="/recycle">
             <RecyclingIcon/>
           </Link>
         </li>
