@@ -119,7 +119,7 @@ export default function Home() {
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search using title...."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

@@ -5,7 +5,7 @@ const userController = {
 
   registerUser: async (req, res) => {
     try {
-      const { username, email, password } = req.body;
+      const { username, email, password ,phone, address, image} = req.body;
       const existingEmail = await Users.findOne({ email: email });
       if (existingEmail)
         return res.status(400).json({ msg: "The email already exists." });
@@ -19,6 +19,9 @@ const userController = {
         username: username,
         email: email,
         password: passwordHash,
+        phone: phone,
+        address: address,
+        image: image,
       });
       await newUser.save();
       res.json({ msg: "Sign up Success" });
