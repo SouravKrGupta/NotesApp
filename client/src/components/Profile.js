@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import Axios
 import { useNavigate } from "react-router-dom";
 const Profile = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -15,7 +20,7 @@ const Profile = () => {
     const getUserData = async () => {
       try {
         const token = localStorage.getItem("tokenStore");
-       console.log(token);
+        
         if (token) {
           // Fetch user data from the server using Axios
           const response = await axios.get("/users/user-details", {
@@ -23,16 +28,15 @@ const Profile = () => {
               Authorization: token,
             },
           });
-          
+
           setUser({
-            username:response.data.username,
-            email:response.data.email,
-            password:response.data.password,
-            phone:response.data.phone,
-            address:response.data.address,
-            image:response.data.image
+            username: response.data.username,
+            email: response.data.email,
+            password: response.data.password,
+            phone: response.data.phone,
+            address: response.data.address,
+            image: response.data.image,
           });
-        
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -42,10 +46,10 @@ const Profile = () => {
     getUserData();
   }, []);
 
-  const onChaneInput = e => {
-    const { name, value } = e.target
-    setUser({ ...user, [name]: value })
-  }
+  const onChaneInput = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -54,29 +58,26 @@ const Profile = () => {
       const token = localStorage.getItem("tokenStore");
 
       if (token) {
-        
         // Update user data on the server using Axios
-        const {username,email,password,phone,address,image}=user
-        const newUser ={
+        const { username, email, password, phone, address, image } = user;
+        const newUser = {
           username,
           email,
           password,
           phone,
           address,
-          image
-        }
+          image,
+        };
         await axios.put("/users/profile", newUser, {
           headers: {
-            
             Authorization: token,
           },
         });
 
-       
-        return history.push("/"); 
+        return history.push("/");
       }
     } catch (error) {
-      window.location.href = '/'
+      window.location.href = "/";
       console.error("Error updating user profile:", error);
     }
   };
@@ -89,7 +90,6 @@ const Profile = () => {
           alt="Profile"
           style={{ maxWidth: "100px", maxHeight: "100px" }}
         />
-      
       </div>
 
       <div className="create-note">
@@ -120,12 +120,18 @@ const Profile = () => {
           <div className="row">
             <label htmlFor="password">Password</label>
             <input
-              type="password"
+             type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={user.password}
               onChange={onChaneInput}
             />
+            <button
+    type="button"
+    onClick={togglePasswordVisibility}
+  >
+    {showPassword ? "Hide" : "Show"}
+  </button>
           </div>
           <div className="row">
             <label htmlFor="phone">Phone Number</label>
@@ -149,16 +155,7 @@ const Profile = () => {
               onChange={onChaneInput}
             />
           </div>
-          <div className="row">
-          <label htmlFor="profileImage">Profile Image</label>
-          <input
-            type="text"
-            id="profileImage"
-            name="profileImage"
-            accept="image/*"
-            onChange={onChaneInput}
-          />
-        </div>
+
           <button type="submit">Update</button>
         </form>
       </div>

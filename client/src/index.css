@@ -17,7 +17,7 @@
   background: url("https://cdn.pixabay.com/photo/2016/01/09/18/28/notepad-1130743_1280.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  overflow:auto;
+  overflow: auto;
 
 }
 
@@ -50,11 +50,19 @@ a {
   display: inline-block;
 
   height: 2em;
-  
+
   width: 2em;
-  
+
   padding: 0.25em;
-  
+
+  border-radius: 50%;
+
+}
+
+.circular-image {
+
+  width: 2em;
+  height: 2em;
   border-radius: 50%;
 
 }
@@ -70,21 +78,23 @@ a {
   padding: 20px 0;
 }
 
-.logo h1 Link{
+.logo h1 Link {
   color: #000;
 }
+
 .logo {
-  
+
   padding: 5px 20px;
   border-radius: 50px;
   width: 200px;
 }
-.logo:hover{
+
+.logo:hover {
   background-color: yellow;
   border: 0.5px solid rgb(228, 13, 13);
 }
 
-.view-note{
+.view-note {
   max-width: 500px;
   box-shadow: rgb(136, 79, 6) 0px 7px 29px 0px;
   width: 100%;
@@ -93,10 +103,12 @@ a {
   padding-top: 20px;
   border-radius: 30px;
 }
-.view-note:hover{
+
+.view-note:hover {
   background-color: #fff;
 }
-.view-note h2{
+
+.view-note h2 {
   color: #0d0d0e;
   font-weight: 600;
   text-transform: uppercase;
@@ -108,11 +120,13 @@ a {
   font-size: 40px;
   font-family: "Times New Roman", Times, serif;
 }
-.view-note  .row {
+
+.view-note .row {
   width: 100%;
   margin: 10px 0;
   margin-bottom: 20px;
 }
+
 .view-note input {
   width: 100%;
   height: 40px;
@@ -126,7 +140,8 @@ a {
   background: transparent;
 
 }
-.view-note textarea{
+
+.view-note textarea {
   width: 100%;
   height: 40px;
   padding: 10px 20px;
@@ -138,15 +153,17 @@ a {
   color: #151516;
   background: transparent;
 }
-.view-note button{
+
+.view-note button {
   margin-top: 10px;
   background: #ff4584;
 
   color: #fff;
- 
+
   cursor: pointer;
 }
-.view-note button:hover{
+
+.view-note button:hover {
   background-color: blue;
 }
 
@@ -250,14 +267,17 @@ a {
 
 
 @media (max-width: 768px) {
+
   /* Styles for screens up to 768px */
   .notes-page header ul li {
     padding: 0 10px;
   }
+
   .notes-page section {
     width: 90%;
-  margin: 20px;
+    margin: 20px;
   }
+
   .create-note {
     padding: 30px;
     padding-top: 15px;
@@ -281,6 +301,7 @@ a {
 }
 
 @media (max-width: 480px) {
+
   /* Styles for screens up to 480px */
   .notes-page header ul li {
     padding: 0 5px;
