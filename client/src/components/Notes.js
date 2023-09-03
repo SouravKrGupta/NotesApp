@@ -6,7 +6,7 @@ import EditNotes  from './notes/EditNote'
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom'
 import  CardNote  from './notes/CardNote'
 import RecycleBin from './notes/RecycleBin'
-
+import Profile from './Profile'
 
 function Notes({setIsLogin}) {
   return (
@@ -20,6 +20,7 @@ function Notes({setIsLogin}) {
           <Route path='/edit/:id' element={<EditNotes/>} exact/>
           <Route path='/card/:id' element={<CardNote/>} exact/>
           <Route path='/recycle' element={<RecycleBin/>} exact/>
+          <Route path='/profile' element={<Profile/>} exact/>
           </Routes>
         </section>
 

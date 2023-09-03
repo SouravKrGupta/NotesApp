@@ -5,6 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import RecyclingIcon from '@mui/icons-material/Recycling';
+import PortraitIcon from '@mui/icons-material/Portrait';
 export default function Nav({ setIsLogin }) {
   const logoutSubmit = () => {
     localStorage.clear();
@@ -33,6 +34,11 @@ export default function Nav({ setIsLogin }) {
         <li >
           <Link to="/recycle">
             <RecyclingIcon/>
+          </Link>
+        </li>
+        <li >
+          <Link to="/profile">
+        <PortraitIcon/>
           </Link>
         </li>
         <li onClick={logoutSubmit}>
