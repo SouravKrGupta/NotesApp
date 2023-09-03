@@ -1,4 +1,5 @@
 const  Notes =require('../models/noteModel')
+const DeletedNotes =require('../models/deletedNoteModel')
 
 const noteController ={
     getNotes:async(req,res)=>{
@@ -32,10 +33,25 @@ const noteController ={
     },
     deleteNote:async(req,res)=>{
         try {
-            await Notes.findByIdAndDelete(req.params.id)
-            res.json({msg:"Deleted a Note"})
+            const deletedNote = await Notes.findByIdAndDelete(req.params.id);
+            if (!deletedNote) {
+                return res.status(404).json({ msg: "Note not found" });
+            }
+    
+            // Save the deleted note to the DeletedNotes model
+            const newDeletedNote = new DeletedNotes({
+                title: deletedNote.title,
+                content: deletedNote.content,
+                date: deletedNote.date,
+                user_id: deletedNote.user_id,
+                name: deletedNote.name,
+            });
+            await newDeletedNote.save();
+    
+            res.json({ msg: "Deleted a Note" });
         } catch (err) {
-            return res.status(500).json({msg:err.message})
+            
+            return res.status(500).json({ msg: err.message });
         }
     },
     updateNote:async(req,res) =>{

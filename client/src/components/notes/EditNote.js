@@ -35,7 +35,7 @@ function EditNote() {
     setNote({ ...note, [name]: value })
   }
 
-  const editNote = async e => {
+  const editNote = async e => { 
     e.preventDefault()
     try {
       const token = localStorage.getItem('tokenStore')

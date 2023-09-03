@@ -11,6 +11,7 @@ dotenv.config()
 //router import
 const UserRouter =require("./routes/userRouter")
 const NoteRouter =require("./routes/noteRouter")
+const DeleteRouter =require('./routes/deletedNoteRouter')
 //mongodb connection
 connectDB();
 //rest object
@@ -23,6 +24,7 @@ app.use(morgan("dev"));
 //routes
 app.use('/users',UserRouter)
 app.use('/api/notes',NoteRouter)
+app.use('/api/delete',DeleteRouter)
 
 // app.get('/',(req,res) =>{
 //     res.json("Hello Everyone,This Notes Application")
