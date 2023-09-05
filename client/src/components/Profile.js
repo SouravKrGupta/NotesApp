@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import Axios
 import { useNavigate } from "react-router-dom";
+import '../Style/profile.css'
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  
+
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -20,7 +21,7 @@ const Profile = () => {
     const getUserData = async () => {
       try {
         const token = localStorage.getItem("tokenStore");
-        
+
         if (token) {
           // Fetch user data from the server using Axios
           const response = await axios.get("/users/user-details", {
@@ -83,16 +84,17 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <div>
-        <img
+    <div className="container">
+      <div className="card">
+        <img className="userProfile"
           src={user.image || "placeholder-image-url.jpg"}
           alt="Profile"
-          style={{ maxWidth: "100px", maxHeight: "100px" }}
+          
         />
+        <h1>{user.username}</h1>
       </div>
 
-      <div className="create-note">
+      <div className="profile">
         <h2>User Profile</h2>
         <form onSubmit={handleFormSubmit}>
           <div className="row">
@@ -120,18 +122,15 @@ const Profile = () => {
           <div className="row">
             <label htmlFor="password">Password</label>
             <input
-             type={showPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={user.password}
               onChange={onChaneInput}
             />
-            <button
-    type="button"
-    onClick={togglePasswordVisibility}
-  >
-    {showPassword ? "Hide" : "Show"}
-  </button>
+            <button type="button" onClick={togglePasswordVisibility}>
+              {showPassword ? "Hide" : "Show"}
+            </button>
           </div>
           <div className="row">
             <label htmlFor="phone">Phone Number</label>

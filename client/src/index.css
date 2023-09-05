@@ -58,13 +58,53 @@ a {
   border-radius: 50%;
 
 }
+/* Circular image container styles */
+.circular-image-container {
+  position: relative;
+  cursor: pointer;
+  margin-right: 20px; /* Adjust the spacing between images */
+}
 
 .circular-image {
-
-  width: 2em;
-  height: 2em;
+  width: 30px; /* Adjust the size as needed */
+  height: 30px; /* Adjust the size as needed */
   border-radius: 50%;
+}
 
+/* Dropdown menu styles */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Position the dropdown below the image */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: row; /* Display the items horizontally */
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  display: flex; /* Display the items horizontally */
+  justify-content: space-between; /* Space between the items */
+  align-items: center;
+}
+
+.dropdown-menu ul li {
+  padding: 10px 20px;
+}
+
+.dropdown-menu ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+/* Show the dropdown when the circular image is clicked */
+.circular-image-container:hover .dropdown-menu {
+  display: flex;
 }
 
 .notes-page header ul li a:hover {
