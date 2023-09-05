@@ -1,0 +1,162 @@
+.container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "header header"
+        "userProfile userDetails"
+        "work_skills timeline_about"
+        "work_skills timeline_about";
+    width: 85%;
+    height: 100vh;
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.3));
+    padding: 1.5rem;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 25px rgba(0, 0, 0, 0.08);
+margin-left: 6.5rem;
+}
+
+.container .card {
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.3));
+    backdrop-filter: blur(3rem);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    height: 50vh;
+    box-shadow: rgb(136, 79, 6) 0px 7px 29px 0px;
+}
+
+.container .card .userProfile {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    box-shadow: none;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 30px;
+
+
+}
+.container .card  h1{
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-left:0.5rem;
+}
+.container .profile{
+    max-width: 800px;
+    box-shadow: rgb(136, 79, 6) 0px 7px 29px 0px;
+    width: 100%;
+ 
+    padding: 40px;
+    padding-top: 20px;
+    border-radius: 30px;
+
+
+}
+.container .profile h2{
+    color: #0d0d0e;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    display: inline-block;
+    border-bottom: 4px solid #ff4584;
+    text-align: center;
+    font-size: 40px;
+    font-family: "Times New Roman", Times, serif;
+}
+ .profile .row{
+    width: 100%;
+    margin: 10px 0;
+    margin-bottom: 20px;
+}
+ .profile .row label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: black;
+    font-weight: 300px;
+    letter-spacing: 1px;
+  }
+   .profile .row input {
+    width: 100%;
+    height: 40px;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #151516;
+    background: transparent;
+  
+  }
+  .profile .row button{
+margin-top: 1rem;
+    padding: 10px 20px;
+   
+  
+  }
+   .profile button {
+    font-size: 16px;
+    letter-spacing: 1px;
+    width: 150px;
+    height: 40px;
+    padding: 10px 20px;
+    background: #ff4584;
+    border-radius: 30px;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  /* Media queries for responsiveness */
+@media screen and (max-width: 992px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "userProfile"
+            "userDetails"
+            "work_skills"
+            "timeline_about";
+        margin-left: 0;
+        width: 100%;
+        padding: 1rem;
+        height: 100%
+    }
+
+    .container .card {
+        height: auto;
+        width: 100%;
+        display: grid;
+        justify-content: center;
+        margin-left: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .container .profile {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    .container .card {
+        height: auto;
+        width: 16rem;
+        display: grid;
+        justify-content: center;
+        margin-left: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}

@@ -58,22 +58,25 @@
     font-size: 15px;
     margin-top: 5px;
 }
-.card-footer .restore{
+.deleted-note-card .card-footer .restore{
     display: inline-block;
     height: 2.5em;
     width: 2.5em;
     text-align: center;
     padding: 0.25em;
     border-radius: 50%;
+    margin-right: 12rem;
+    background: transparent;
 }
-.card-footer .permanently-delete{
+.deleted-note-card .card-footer .permanently-delete{
     
         display: inline-block;
         height: 2.5em;
         width: 2.5em;
         text-align: center;
-        padding: 0.25em;
+        padding: 0.25rem;
         border-radius: 50%;
+        background: transparent;
 }
 .card-footer .restore:hover{
     color: #ff4584;
@@ -85,3 +88,73 @@
     background-color: yellow;
     border-radius: 50px;
   }
+
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+ 
+  .recycle-bin {
+    justify-content: center;
+  }
+
+  .deleted-note-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .deleted-note-card .delete {
+    top: 10px;
+    right: 5px;
+    height: 2.5em;
+    width: 2.5em;
+    font-size: 12px;
+  }
+
+ 
+
+  .deleted-note-card .text-wrapper {
+    height: 120px;
+  }
+
+  .card-footer {
+    font-size: 12px;
+  }
+
+  .card-footer .restore {
+    height: 2em;
+    width: 2em;
+    font-size: 10px;
+  }
+  .card-footer .permanently-delete{
+    margin-left: 15px;
+    height: 2em;
+    width: 2em;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+ 
+  .deleted-note-card  {
+    max-width: 300px;
+    margin: 10px;
+  }
+
+ 
+  .deleted-note-card  .text-wrapper {
+    height: 100px;
+    font-size: 12px;
+  }
+
+  .card-footer {
+    font-size: 10px;
+  }
+
+  .card-footer .restore {
+    height: 1.8em;
+    width: 1.8em;
+    font-size: 8px;
+    margin-right: 15rem;
+  }
+}
